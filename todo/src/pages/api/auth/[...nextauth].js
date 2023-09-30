@@ -26,7 +26,7 @@ const authOptions = {
                 if(!user) throw new Error("User dosen't exist!");
 
                 const isValid = await verifyPassword(password , user.password);
-                if(!user) throw new Error("Username or Password is incorrect")
+                if(!isValid) throw new Error("Username or Password is incorrect")
 
                 return {email}
             }
