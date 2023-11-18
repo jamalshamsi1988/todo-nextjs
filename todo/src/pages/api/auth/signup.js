@@ -18,7 +18,7 @@ async function handler(req , res){
     const {email , password} = req.body;
 
     if(!email || !password){
-        return res.status(422).json({status:"failed" , message : "Inavlid Data"});
+        return res.status(422).json({status:"failed" , message : "Invalid Data"});
     }
 
     const existingUser = await User.findOne({email : email});
@@ -27,7 +27,7 @@ async function handler(req , res){
     }
     const hashedPassword = await hashPassword(password);
 
-    const newUser = await User.crete({email : email , password : hashedPassword});
+    const newUser = await User.create({email : email , password : hashedPassword});
             console.log(newUser);
         res.status(201).json({status : "success" , message: "Created User"})  ;  
 

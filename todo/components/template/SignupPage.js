@@ -34,7 +34,7 @@ const SignupPage = () => {
         <button onClick={signUpHandler}>Register</button>  
         <div>
             <p>Have you an account?</p>
-            <Link href="/signin">Sign in</Link>
+            <Link href="/signin">SignIn</Link>
         </div>
 
     </div>
