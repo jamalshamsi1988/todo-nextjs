@@ -19,7 +19,7 @@ const SignupPage = () => {
     const res = await fetch("/api/auth/signup" , {
         method : "POST", 
         body : JSON.stringify({email , password}),
-        headers : {'Content-type': 'application/json'}
+        headers : {'Content-Type': 'application/json'}
     });
     const data = await res.json();
     console.log(data);
