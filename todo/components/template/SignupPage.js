@@ -7,7 +7,7 @@ const SignupPage = () => {
 
     const [email , setEmail] = useState("");
     const [password , setPassword] = useState("");
-    const router = useRouter()
+    const router = useRouter();
     
     const {status} = useSession();
     useEffect(()=>{
