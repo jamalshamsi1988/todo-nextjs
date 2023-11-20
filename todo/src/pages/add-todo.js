@@ -1,6 +1,6 @@
 import AddTodoPage from '../../components/template/AddTodoPage'
 
-const AddTodo = () => {
+function AddTodo(){
   return (
    <AddTodoPage />
   )
