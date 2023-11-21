@@ -4,7 +4,7 @@ const Tasks = ({data}) => {
   return (
     <div className="tasks">
         {
-            data?.map(item => <div key={item._id} className="tasks-card">
+            data?.map(item => <div key={item._id} className="tasks__card">
                 <span className={item.status}></span>
                 <RiMastodonLine />
                 <h4>{item.title}</h4>
