@@ -1,13 +1,22 @@
 import Link from "next/link"
+import { useSession ,signOut } from "next-auth/react"
 import {VscListSelection} from "react-icons/vsc"
 import {BiMessageAltAdd} from "react-icons/bi"
 import {RxDashboard} from "react-icons/rx"
+import { FiLogOut } from "react-icons/fi"
 
 const Layout = ({children}) => {
+    const {status}=useSession();
+    const logoutHnadler=()=>{
+        signOut();
+    }
   return (
     <div className="container">
         <header>
             <p>Jamal Todo App</p>
+            {
+                status ? <button onClick={logoutHnadler}>Logout <FiLogOut /></button> : null
+            }
         </header>
         <div className="container--main">
             <aside>
