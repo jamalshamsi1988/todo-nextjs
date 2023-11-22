@@ -38,11 +38,16 @@ async function handler(req, res) {
     user.name = name;
     user.lastName = lastName;
     user.save();
+    res.status(200).json({
+      status: "success",
+      data: { name, lastName, email: session.user.email },
+    });
+  } else if (req.method === "GET") {
     res
       .status(200)
       .json({
         status: "success",
-        data: { name, lastName, email: session.user.email },
+        data: { name: user.name, lastName: user.lastName, email: user.email },
       });
   }
 }
