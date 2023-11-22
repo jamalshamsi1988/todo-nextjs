@@ -7,7 +7,7 @@ import { FiLogOut } from "react-icons/fi"
 
 const Layout = ({children}) => {
     const {status}=useSession();
-    const logoutHnadler=()=>{
+    const logOutHandler=()=>{
         signOut();
     }
   return (
@@ -15,7 +15,7 @@ const Layout = ({children}) => {
         <header>
             <p>Jamal Todo App</p>
             {
-                status ? <button onClick={logoutHnadler}>Logout <FiLogOut /></button> : null
+                status ==="authenticated" ? <button onClick={logOutHandler}>Logout <FiLogOut /></button> : null
             }
         </header>
         <div className="container--main">
