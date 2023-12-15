@@ -3,6 +3,7 @@ import connectDB from "../../../utils/connectDB";
 import User from "../../../model/User";
 import { verifyPassword } from "../../../utils/auth";
 
+
 async function handler(req, res) {
   try {
     await connectDB();

@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { MdModeEdit } from "react-icons/md";
-
 import ProfileForm from "../module/ProfileForm";
 import ProfileData from "../module/ProfileData";
+import { useRouter } from "next/router";
+import EditProfilePage from "./EditProfilePage";
 const ProfilePage = () => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [data, setData] = useState(null);
-
+  const [edit, setEdit] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     fetchProfile();
   }, []);
@@ -28,28 +29,35 @@ const ProfilePage = () => {
     });
     const data = await res.json();
     console.log(data);
+    setEdit(data);
+    router.reload();
   };
-
   const editHandler = async () => {
-    const res = await fetch(`/api/profileId/${user._id}`, {
+    setEdit(setLastName(""), setName(""));
+    const res = await fetch("/api/profileId", {
       method: "PATCH",
       body: JSON.stringify({ name, lastName }),
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
+    router.reload();
     console.log(data);
   };
+
+
   return (
     <div className="profile-form">
-      <div className="profile-form__headr">
-       
-        <h2>Profile</h2>
-        <button onClick={editHandler}>
-          {" "}
-          Edit <MdModeEdit />
-        </button>
-      </div>
-      {data ? (
+      <h2>Profile</h2>
+      {data ?  <EditProfilePage  name={name}
+          lastName={lastName}
+          password={password}
+          setName={setName}
+          setLastName={setLastName}
+          setPassword={setPassword} 
+          editHandler={editHandler}
+          submitHandler={submitHandler}
+          />
+      ?(
         <ProfileData data={data} />
       ) : (
         <ProfileForm
@@ -60,8 +68,9 @@ const ProfilePage = () => {
           setLastName={setLastName}
           setPassword={setPassword}
           submitHandler={submitHandler}
+          editHandler={editHandler}
         />
-      )}
+      ) : data}
     </div>
   );
 };

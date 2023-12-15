@@ -4,6 +4,7 @@ import {VscListSelection} from "react-icons/vsc"
 import {BiMessageAltAdd} from "react-icons/bi"
 import {RxDashboard} from "react-icons/rx"
 import { FiLogOut } from "react-icons/fi"
+import { MdModeEdit } from "react-icons/md";
 
 const Layout = ({children}) => {
     const {status}=useSession();
@@ -33,6 +34,10 @@ const Layout = ({children}) => {
                     <li>
                         <RxDashboard />
                         <Link href="/profile">Profile</Link>
+                    </li>
+                    <li>
+                        <MdModeEdit />
+                        <Link href="/editProfile">Edit Profile</Link>
                     </li>
                 </ul>
             </aside>

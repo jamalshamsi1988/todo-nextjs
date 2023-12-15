@@ -2,8 +2,8 @@ import { getSession } from "next-auth/react";
 import connectDB from "../../../utils/connectDB";
 import User from "../../../model/User";
 
-export async function handler(req, res) {
-  if (req.method !== "PATCH") return;
+ async function handler(req, res) {
+  if (req.method === "PATCH"){
   try {
     await connectDB();
   } catch (error) {
@@ -38,3 +38,6 @@ export async function handler(req, res) {
     .status(200)
     .json({ status: "success", message: "Profile is update" });
 }
+}
+
+export default handler
