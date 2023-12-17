@@ -1,6 +1,7 @@
 import { getSession } from "next-auth/react";
 import connectDB from "../../../utils/connectDB";
-import User from "../../../model/User";
+import Profile from "../../../model/Profile";
+
 
  async function handler(req, res) {
   if (req.method === "PATCH"){
@@ -23,7 +24,7 @@ import User from "../../../model/User";
   }
 
 
-  const user = await User.findOne({ _id:profileId });
+  const user = await Profile.findOne({ _id:userId });
   if (!user._id.equals(user.userId)) {
     return res
       .status(404)
