@@ -32,24 +32,25 @@ const ProfilePage = () => {
   };
  
   
-  const editHandler = async () => {
-   
-      router.push(`/api/editProfile/${data._id}`);
+  const editHandler = async () => { 
     
-    // const res = await fetch("/api/editProfile", {
-    //   method: "PATCH",
-    //   body: JSON.stringify({ name, lastName,password }),
-    //   headers: { "Content-Type": "application/json" },
-    // });
-    // const data = await res.json();
-    // router.reload();
+    const res = await fetch(`/api/editProfile/${data.user._id}`, {
+      method : "PATCH",
+      body : JSON.stringify({name,lastName,password}),
+      headers: {  'Content-type': 'application/json' },
+    })
+    const result = await res.json();
+    if(result.status === "success") router.push("/")
   };
 
+ 
 
   return (
     <div className="profile-form">
       <h2>Profile</h2>
-      <Link href="/editProfile">Edit</Link>
+      {/* <button onClick={editHandler}> Edit</button> */}
+      <Link href="/edit">edit</Link>
+
       {data ? (
         <ProfileData data={data} />
       ) : (

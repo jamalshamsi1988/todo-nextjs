@@ -37,7 +37,7 @@ const Layout = ({children}) => {
                     </li>
                     <li>
                         <MdModeEdit />
-                        <Link href="/editProfile">Edit Profile</Link>
+                        <Link href="/editProfile"> Edit Profile </Link>
                     </li>
                 </ul>
             </aside>
