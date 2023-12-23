@@ -16,13 +16,6 @@ async function handler(req, res) {
     const id = req.query.profileId;
     const { name, lastName } = req.body;
 
-    const session = await getSession({ req });
-    if (!session) {
-      return res
-        .status(401)
-        .json({ status: "failed", message: "You are not logged in !" });
-    }
-
     const user = await User.findOne({ _id: id });
     if (!user) {
       return res
