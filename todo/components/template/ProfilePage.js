@@ -8,7 +8,7 @@ const ProfilePage = () => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [data, setData] = useState(null);
-  
+
   const router = useRouter();
   useEffect(() => {
     fetchProfile();
@@ -30,26 +30,12 @@ const ProfilePage = () => {
     const data = await res.json();
     router.reload();
   };
- 
-  
-  const editHandler = async () => { 
-    
-    const res = await fetch(`/api/editProfile/${data.user._id}`, {
-      method : "PATCH",
-      body : JSON.stringify({name,lastName,password}),
-      headers: {  'Content-type': 'application/json' },
-    })
-    const result = await res.json();
-    if(result.status === "success") router.push("/")
-  };
-
- 
 
   return (
     <div className="profile-form">
       <h2>Profile</h2>
-      {/* <button onClick={editHandler}> Edit</button> */}
-      <Link href="/edit">edit</Link>
+
+      <Link href="/edit">Edit</Link>
 
       {data ? (
         <ProfileData data={data} />
@@ -62,9 +48,9 @@ const ProfilePage = () => {
           setLastName={setLastName}
           setPassword={setPassword}
           submitHandler={submitHandler}
-          editHandler={editHandler}
+         
         />
-      ) }
+      )}
     </div>
   );
 };
