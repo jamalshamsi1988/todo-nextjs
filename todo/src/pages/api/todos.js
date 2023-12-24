@@ -28,13 +28,13 @@ async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const { title, status } = req.body;
-    if (!title || !status) {
+    const { title, status ,description} = req.body;
+    if (!title || !status || !description) {
       return res
         .status(422)
         .json({ status: "failed", message: "Invalid data" });
     }
-    user.todos.push({ title, status });
+    user.todos.push({ title, status,description});
     user.save();
 
     res.status(201).json({ status: "success", message: "Todo Created" });
@@ -44,7 +44,7 @@ async function handler(req, res) {
   } else if (req.method === "PATCH") {
     const { id, status } = req.body;
 
-    if (!id || !status) {
+    if (!id || !status ) {
       return res
         .status(422)
         .json({ status: "failed", message: "Invalid Data" });

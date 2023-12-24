@@ -18,7 +18,8 @@ const HomePage = () => {
     <div className="home-page">
       <div className="home-page--todo">
         <p>Todo</p>
-        <Tasks data={todos.todo} fetchTodos={fetchTodos} next="inProgress"/>
+        
+        <Tasks data={todos.todo} fetchTodos={fetchTodos} next="inProgress" />
       </div>
       <div className="home-page--inProgress">
         <p>InProgress</p>

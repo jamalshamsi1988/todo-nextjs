@@ -108,15 +108,14 @@ h2 svg {
 .add-form__input--first {
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 label {
   color: #7f7e86;
   font-size: 1.3rem;
 }
-
-input {
+input  {
   border: none;
   border-radius: 8px;
   margin-top: 5px;

@@ -1,10 +1,8 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 
 
 const EditPage = ({data}) => {
-
-
  const [name, setName]=useState("");
  const[lastName,setLastName]=useState("");
 const router=useRouter()
@@ -24,8 +22,9 @@ const editHandler=async()=>{
         
          {
             data ?  (<> <div>
-              <h4>Your Email : {data.email}</h4>
-              <p>Please update your profile</p>
+              <h4>Please update your profile</h4>
+              <br/>
+              <h6>Your Email : {data.email}</h6>
               <br/>
             <label htmlFor="name"> Name</label>
             <input

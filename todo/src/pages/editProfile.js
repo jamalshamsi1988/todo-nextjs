@@ -6,14 +6,14 @@ const Index = () => {
 
   const [data,setData]=useState(null);
   const router=useRouter();
-  const{query:{profileId},isReady}=router;
+  const{isReady}=router;
 
   useEffect(()=>{
     if(isReady){
       fetch("/api/profile").then(res=> res.json()).then(data=> setData(data.data))
     }
   },[isReady])
- if(isReady) return <EditPage data={data} id={profileId}  />
+ if(isReady) return <EditPage data={data}   />
 }
 
 export default Index
