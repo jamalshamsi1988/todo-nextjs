@@ -35,7 +35,6 @@ const ProfilePage = () => {
     <div className="profile-form">
       <h2>Profile</h2>
 
-      <Link href="/profileId">Edit</Link>
 
       {data ? (
         <ProfileData data={data} />

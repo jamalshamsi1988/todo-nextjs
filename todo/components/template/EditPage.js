@@ -1,27 +1,32 @@
-import React, { useState } from 'react'
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react'
 
 
-const EditPage = ({data,id}) => {
- console.log({data})
+const EditPage = ({data}) => {
+
 
  const [name, setName]=useState("");
- const[lastName,setLastName]=("");
+ const[lastName,setLastName]=useState("");
+const router=useRouter()
 
 const editHandler=async()=>{
-    const res= await fetch("/api/peofileId/",{
+    const res= await fetch("/api/profile/",{
         method:"PATCH",
         body:JSON.stringify({name,lastName}),
         headers:{'Content-Type' :'application/json'}
     })
      const result=await res.json();
-     console.log(result)
+     if(result.status === "success") router.push("/profile")
 }
    
   return (
-    <div>
+    <div className="profile-form__input">
         
          {
             data ?  (<> <div>
+              <h4>Your Email : {data.email}</h4>
+              <p>Please update your profile</p>
+              <br/>
             <label htmlFor="name"> Name</label>
             <input
               type="text"
@@ -39,8 +44,8 @@ const editHandler=async()=>{
               onChange={(e) => setLastName(e.target.value)}
             />
           </div> 
-           <span>{data.email}</span>
-          <button onClick={editHandler}>Submit</button> </>) : "Loading"
+           
+          <button onClick={editHandler}>Edit</button> </>) : <h3>Loading ...</h3>
          }
     </div>
   )

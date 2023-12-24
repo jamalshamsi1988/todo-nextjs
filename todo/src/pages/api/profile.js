@@ -50,6 +50,15 @@ async function handler(req, res) {
         status: "success",
         data: { name: user.name, lastName: user.lastName, email: user.email },
       });
+  }else if(req.method === "PATCH"){
+    const { name, lastName } = req.body;
+    user.name = name;
+    user.lastName = lastName;
+    user.save();
+    res.status(200).json({
+      status: "success",
+      data: { name, lastName, email: session.user.email },
+    });
   }
 }
 

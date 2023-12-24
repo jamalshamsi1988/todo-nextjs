@@ -14,7 +14,7 @@ const Layout = ({children}) => {
   return (
     <div className="container">
         <header>
-            <p>Jamal Todo App</p>
+            <p>Jamal Shamsi  || Todo App</p>
             {
                 status ==="authenticated" ? <button onClick={logOutHandler}>Logout <FiLogOut /></button> : null
             }
@@ -37,7 +37,7 @@ const Layout = ({children}) => {
                     </li>
                     <li>
                         <MdModeEdit />
-                        <Link href="/editProfile"> Edit Profile </Link>
+                        <Link href="/editProfile">Edit Profile</Link>
                     </li>
                 </ul>
             </aside>

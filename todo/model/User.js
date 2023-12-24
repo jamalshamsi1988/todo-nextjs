@@ -11,12 +11,12 @@ const userSchema = new Schema({
   },
   name: String,
   lastName: String,
+  todos: [{ title: String, status: String }],
   createAt: {
     type: Date,
     default: () => Date.now(),
     immutable: true,
   },
-  todos: [{ title: String, status: String }],
 });
 
 const User = models.User || model("User", userSchema);
