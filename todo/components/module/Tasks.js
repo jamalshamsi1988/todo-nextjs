@@ -1,9 +1,12 @@
 import { RiMastodonLine } from "react-icons/ri";
 import { BiRightArrow, BiLeftArrow } from "react-icons/bi";
 import { MdModeEdit } from "react-icons/md";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-const Tasks = ({ data, next, back, fetchTodos }) => {
-
+const Tasks = ({ data, next, back, fetchTodos}) => {
+  const[todos,setTodos]=useState(data)
+const router=useRouter()
   const changeHandler = async (id, status) => {
     const res = await fetch("/api/todos", {
       method: "PATCH",
@@ -13,11 +16,14 @@ const Tasks = ({ data, next, back, fetchTodos }) => {
     const data = await res.json();
     if (data.status === "success") fetchTodos();
   };
+
+ 
   return (
     <div className="tasks">
       {data?.map((item) => (
         <div key={item._id} className="tasks__card">
           <MdModeEdit/>
+          <button>Delete</button>
           <span className={item.status}></span> 
           <RiMastodonLine />
           <h4>{item.title}</h4>

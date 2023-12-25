@@ -1,7 +1,7 @@
 import { getSession } from "next-auth/react";
 import connectDB from "../../../utils/connectDB";
 import User from "../../../model/User";
-import { sortTodos } from "../../../utils/sortTodos";
+import { deleteTodo, sortTodos } from "../../../utils/sortTodos";
 
 async function handler(req, res) {
   try {
@@ -54,7 +54,10 @@ async function handler(req, res) {
       { $set: { "todos.$.status": status } }
     );
     res.status(200).json({ status: "success" });
-  }
+
+  } else if (req.method === "DELETE") {
+    const spliceData = deleteTodo(user.todos);
+    res.status(200).json({ status: "success", data: { todos: spliceData } });}
 }
 
 export default handler;
