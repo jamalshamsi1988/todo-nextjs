@@ -4,9 +4,10 @@ import { MdModeEdit } from "react-icons/md";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Tasks = ({ data, next, back, fetchTodos}) => {
-  const[todos,setTodos]=useState(data)
-const router=useRouter()
+const Tasks = ({ data, next, back, fetchTodos }) => {
+  const [todos, setTodos] = useState(data);
+
+  const router = useRouter();
   const changeHandler = async (id, status) => {
     const res = await fetch("/api/todos", {
       method: "PATCH",
@@ -17,14 +18,19 @@ const router=useRouter()
     if (data.status === "success") fetchTodos();
   };
 
- 
+  const deleteHandler = async (id) => {
+    const res = await fetch("/api/todos", { method: "DELETE"  });
+    const resu = await res.json();
+    if (resu.status === "success") fetchTodos();
+  };
+
   return (
     <div className="tasks">
       {data?.map((item) => (
         <div key={item._id} className="tasks__card">
-          <MdModeEdit/>
-          <button>Delete</button>
-          <span className={item.status}></span> 
+          <MdModeEdit />
+          <button onClick={()=>deleteHandler(item._id)}>Delete</button>
+          <span className={item.status}></span>
           <RiMastodonLine />
           <h4>{item.title}</h4>
           <h5>{item.description}</h5>
