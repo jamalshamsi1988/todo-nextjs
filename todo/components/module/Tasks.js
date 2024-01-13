@@ -19,9 +19,14 @@ const Tasks = ({ data, next, back, fetchTodos }) => {
   };
 
   const deleteHandler = async (id) => {
-    const res = await fetch("/api/todos", { method: "DELETE"  });
+  
+    const res = await fetch("/api/todos", {
+       method: "DELETE" ,
+       body: JSON.stringify({id}),
+        headers: { "Content-Type": "application/json" },
+    });
     const resu = await res.json();
-    if (resu.status === "success") fetchTodos();
+    if (resu.status === "success") console.log("deleteeeee boooo");
   };
 
   return (
@@ -29,7 +34,7 @@ const Tasks = ({ data, next, back, fetchTodos }) => {
       {data?.map((item) => (
         <div key={item._id} className="tasks__card">
           <MdModeEdit />
-          <button onClick={()=>deleteHandler(item._id)}>Delete</button>
+          <button onClick={()=> deleteHandler(item._id)}>Delete</button>
           <span className={item.status}></span>
           <RiMastodonLine />
           <h4>{item.title}</h4>

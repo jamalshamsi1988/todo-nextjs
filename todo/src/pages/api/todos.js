@@ -1,7 +1,9 @@
 import { getSession } from "next-auth/react";
 import connectDB from "../../../utils/connectDB";
 import User from "../../../model/User";
-import { deleteTodo, sortTodos } from "../../../utils/sortTodos";
+import {  sortTodos } from "../../../utils/sortTodos";
+import { ObjectId } from 'bson'; 
+
 
 async function handler(req, res) {
   try {
@@ -54,14 +56,20 @@ async function handler(req, res) {
       { $set: { "todos.$.status": status } }
     );
     res.status(200).json({ status: "success" });
+  }  else if (req.method === "DELETE") {
+    const { id, status } = req.body;
+  //  const user = await User.findOne({_id :id});
+   user.todos.findOne(todo => todo._id === id);
+   
+    console.log(id)
+
     
-  } else if (req.method === "DELETE") {
-    const { id } = req.body;
-    const result = await User.deleteOne({ "todos._id": id });
-    user.todos = result;
-    user.save();
-    res.status(200).json({ status: "sucess" });
+
+
   }
-}
+  }
 
 export default handler;
+
+
+
